@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axiosApi from "../../axiosApi.ts";
 
 interface Post {
@@ -15,14 +15,14 @@ const PostList: React.FC = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axiosApi.get("/posts.json");
-        const fetchedPosts: Post[] = Object.keys(response.data).map((key) => ({
+        const response = await axiosApi.get('/posts.json');
+        const fetchedPosts: Post[] = Object.keys(response.data).map(key => ({
           id: key,
           ...response.data[key],
         }));
         setPosts(fetchedPosts);
       } catch (error) {
-        console.error("Error fetching posts:", error);
+        console.error('Error fetching posts:', error);
       }
     };
 
@@ -30,21 +30,19 @@ const PostList: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Posts</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h2>{post.title}</h2>
-            <small>
-              Created at: {new Date(post.createdAt).toLocaleString()}
-            </small>
-            <p>
-              <Link to={`/posts/${post.id}`}>Read More &gt;&gt;</Link>
-            </p>
-          </li>
+    <div className="container mt-5">
+      <h1 className="text-center">Posts</h1>
+      <div className="list-group mt-4">
+        {posts.map(post => (
+          <div key={post.id} className="list-group-item">
+            <h5 className="mb-1">{post.title}</h5>
+            <small className="text-muted">Created at: {new Date(post.createdAt).toLocaleString()}</small>
+            <div className="mt-2">
+              <Link to={`/posts/${post.id}`} className="btn btn-link">Read More &gt;&gt;</Link>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -44,8 +44,8 @@ const PostDetail: React.FC = () => {
       <h1>{post.title}</h1>
       <small>Created at: {new Date(post.createdAt).toLocaleString()}</small>
       <p>{post.content}</p>
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={() => navigate(`/posts/${id}/edit`)}>Edit</button>
+      <button className="btn btn-primary del" onClick={handleDelete}>Delete</button>
+      <button className="btn btn-primary" onClick={() => navigate(`/posts/${id}/edit`)}>Edit</button>
     </div>
   );
 };

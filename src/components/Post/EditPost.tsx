@@ -50,27 +50,33 @@ const EditPost: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title:</label>
-        <input
-          name="title"
-          value={post.title}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Content:</label>
-        <textarea
-          name="content"
-          value={post.content}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit">Update Post</button>
-    </form>
+    <div className="container mt-5">
+      <h2 className="text-center">Edit Post</h2>
+      <form onSubmit={handleSubmit} className="mt-4">
+        <div className="mb-3">
+          <label className="form-label">Title:</label>
+          <input
+            type="text"
+            className="form-control"
+            name="title"
+            value={post.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Content:</label>
+          <textarea
+            className="form-control post-body"
+            name="content"
+            value={post.content}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary w-100">Update Post</button>
+      </form>
+    </div>
   );
 };
 
